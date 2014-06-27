@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RTCMultiConnection -- PARTICIPANT</title>
+		<script src="firebase.js"></script>
+		<script src="latest.js"></script>
+	</head>
+	<body>
+		<button id="small-screen">Small screen</button>
+		<button id="big-screen">Big screen</button>
+		<video autoplay></video>
+		<script>
+			//window.skipRTCMultiConnectionLogs = true;
+
+			var video = document.querySelector('video');
+			var stream;
+
+			var channelid = 'BB-Group-Video';
+			var room1 = new RTCMultiConnection(channelid);
+			room1.sessionid = 'small-room1';
+			room1.autoReDialOnFailure = true;
+
+			var sessions = {};
+			room1.onNewSession = function(session) {
+				if (sessions[session.sessionid]) return;
+				sessions[session.sessionid] = session;
+				session.join({oneway: true});
+			}
+
+			function restartMedia(connection, message) {
+				if (!!stream) {
+					video.src = null;
+					stream.stop('local');
+					stream = null;
+				}
+				connection.sendCustomMessage(message);
+			}
+
+			document.querySelector('#small-screen').onclick = function() {
+				restartMedia(room1, 'small-screen');
+			};
+			document.querySelector('#big-screen').onclick = function() {
+				restartMedia(room1, 'big-screen');
+			};
+
+			// on getting local or remote media stream
+			room1.onstream = function(e) {
+				video.src = e.blobURL;
+				video.play();
+				stream = e.stream;
+			};
+
+			room1.onleave = function(e) {
+				if (!!stream) {
+					video.src = null;
+					stream.stop('remote');
+					stream = null;
+				}
+				console.log('Leaving room ', room1.sessionid);
+				sessions[room1.sessionid] = null;
+			}
+
+			// setup signalling channel
+			room1.connect();
+		</script>
+
+	</body>
+</html>
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RTCMultiConnection -- INITIATOR</title>
+		<script src="firebase.js"></script>
+		<script src="latest.js"></script>
+	</head>
+	<body>
+		<button id="openNewSessionButton">Open New Room</button>
+		<video autoplay></video>
+
+		<script>
+			//window.skipRTCMultiConnectionLogs = true;
+
+			var video = document.querySelector('video');
+			var stream;
+			var size = {w: 320, h: 180};
+
+			var channelid = 'BB-Group-Video';
+			var small_room1 = new RTCMultiConnection(channelid);
+			small_room1.sessionid = 'small-room1';
+			small_room1.autoReDialOnFailure = true;
+
+			small_room1.session = {
+				audio: false,
+				video: true
+			};
+			small_room1.media.max(size.w, size.w);
+
+			function stopMedia() {
+				if (!!stream) {
+					video.src = null;
+					stream.stop('local');
+					stream = null;
+				}
+			}
+
+			function restartMedia(connection, w, h) {
+				stopMedia();
+				connection.media.max(w, h);
+				size = {w: w, h: h};
+				// https://github.com/muaz-khan/WebRTC-Experiment/issues/229
+				connection.captureUserMedia(function(newStream) {
+					connection.renegotiate(newStream, small_room1.session);
+				});
+			}
+
+			small_room1.onCustomMessage = function(message) {
+				if (message === 'small-screen') {
+					restartMedia(small_room1, 320, 180);
+				} else if (message === 'big-screen') {
+					restartMedia(small_room1, 1920, 1080);
+				}
+			}
+
+			// on getting local or remote media stream
+			small_room1.onstream = function(e) {
+				video.src = e.blobURL;
+				video.play();
+				stream = e.stream;
+			};
+
+			// open new session
+			document.querySelector('#openNewSessionButton').onclick = function() {
+				small_room1.open();
+			};
+
+			window.onbeforeunload = stopMedia;
+		</script>
+
+	</body>
+</html>
+
