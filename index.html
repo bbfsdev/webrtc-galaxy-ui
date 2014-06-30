@@ -1,5 +1,26 @@
-<html>
+<!DOCTYPE html>
+<html ng-app="webrtc">
+<head>
+    <meta charset="utf-8">
+    <title ng-bind="'SITE_TITLE' | translate"></title>
+    <meta name="description" content="{{ 'SITE_DESCRIPTION' | translate}}">
+    <meta name="keywords" content="{{ 'SITE_KEYWORDS' | translate}}">
+    <link rel="stylesheet" href="./css/cssreset-min.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
 <body>
-  Hello WebRTC share :)
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.14/angular-route.min.js"></script>
+    <script src="http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"></script>
+    <script src="js/vendor/angular-translate.min.js"></script>
+    <script src="js/vendor/angular-translate-loader-static-files.min.js"></script>
+    <script src="js/module.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
+  	Hello WebRTC share :)
+  	<br/><br/>
+  	<input type="text" ng-model="sometext" size="100" placeholder="Input some text to test Angular JS..." />
+    <p>{{ sometext }}</p>
 </body>
 </html>
