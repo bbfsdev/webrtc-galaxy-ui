@@ -9,7 +9,7 @@ webrtc.config(['$translateProvider', function ($translateProvider) {
         .preferredLanguage('en');
 }]);
 
-kabtv.config(function($routeProvider) {
+webrtc.config(function($routeProvider) {
     $routeProvider
         .when('/',{
             templateUrl: "./index.html",
