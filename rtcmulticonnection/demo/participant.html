@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RTCMultiConnection -- INITIATOR</title>
+		<script src="/RTCMultiConnection-v1.8.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<button id="js-start-broadcasting-button">Start broadcasting</button>
+        <p><video autoplay></video></p>
+
+		<script>
+			//window.skipRTCMultiConnectionLogs = true;
+
+			var video = document.querySelector('video');
+			var stream;
+			var size = {w: 320, h: 180};
+
+			var channelid = 'BB-Group-Video';
+
+			var connection = new RTCMultiConnection(channelid);
+			connection.sessionid = 'small-room';
+			connection.autoReDialOnFailure = true;
+            //connection.leaveOnPageUnload = false;
+
+			connection.session = {
+				audio: false,
+				video: true
+			};
+			connection.media.max(size.w, size.w);
+
+			function stopMedia() {
+				if (!!stream) {
+					video.src = null;
+					stream.stop('local');
+					stream = null;
+				}
+			}
+
+			function restartMedia(connection, w, h) {
+                console.log("Restarting media...")
+				stopMedia();
+				connection.media.max(w, h);
+				size = {w: w, h: h};
+				// https://github.com/muaz-khan/WebRTC-Experiment/issues/229
+				connection.captureUserMedia(function(newStream) {
+					connection.renegotiate(newStream, connection.session);
+				});
+			}
+
+			connection.onCustomMessage = function(message) {
+                console.log("Custom message, ", message);
+				if (message === 'small-screen') {
+					restartMedia(connection, 320, 180);
+				} else if (message === 'big-screen') {
+					restartMedia(connection, 1920, 1080);
+				}
+			}
+
+			// on getting local or remote media stream
+			connection.onstream = function(e) {
+                console.log("New stream!", e)
+                video.src = URL.createObjectURL(e.stream)
+				video.play();
+				stream = e.stream;
+			};
+
+			// open new session
+			document.querySelector('#js-start-broadcasting-button').onclick = function() {
+				connection.open();
+			};
+
+			window.onbeforeunload = stopMedia;
+		</script>
+
+	</body>
+</html>
+
