@@ -1,27 +1,45 @@
-webrtc.directive("webrtcOnload", function () {
+webrtc.directive("onload", function () {
     return {
         scope: {},
         templateUrl: './views/onload.html',
-        controller: webrtcOnLoadCtrl
+        controller: onLoadCtrl
     };
 });
 
-webrtc.directive("webrtcHeader", function () {
+webrtc.directive("header", function () {
     return {
         templateUrl: './views/header.html',
-        controller: webrtcHeaderCtrl
+        controller: headerCtrl
     };
 });
 
-webrtc.directive("webrtcFooter", function () {
+webrtc.directive("footer", function () {
     return {
         templateUrl: 'views/footer.html',
-        controller: webrtcFooterCtrl
+        controller: footerCtrl
     };
 });
-webrtc.directive("webrtcBody", function () {
+webrtc.directive("body", function () {
     return {
         templateUrl: 'views/body.html',
-        controller: webrtcBodyCtrl
+        controller: bodyCtrl
+    };
+});
+webrtc.directive("preview", function () {
+    return {
+        templateUrl: 'views/preview.html',
+        controller: previewCtrl
+    };
+});
+webrtc.directive("presets", function () {
+    return {
+        templateUrl: 'views/presets.html',
+        controller: presetsCtrl
+    };
+});
+webrtc.directive("groups", function () {
+    return {
+        templateUrl: 'views/groups.html',
+        controller: groupsCtrl
     };
 });

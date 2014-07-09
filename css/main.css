@@ -1,0 +1,30 @@
+.view {
+	padding:10px;
+	background:#eee;
+	border-radius:5px;
+	height: 400px;
+	overflow-y: auto;	
+}
+.title{
+	color:#0000cc;
+	text-align: center;
+}
+.preset{
+	display: block;
+	width: 160px;
+	height: 160px;
+	background: #f7f7f7;
+	border-radius: 10px;
+	float: left;
+	margin: 0 10px 10px 0;
+}
+.preset_add {
+	width: 100%;
+	text-align: center;
+	padding: 40% 0;
+	font-size: 24px;
+}
+.preset_add:hover {
+	background: #ffc;
+	cursor: pointer;
+}
