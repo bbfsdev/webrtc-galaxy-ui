@@ -23,6 +23,7 @@
 			var connection = new RTCMultiConnection(channelid);
 			connection.sessionid = 'virtual-group';
             connection.isInitiator = false;
+            connection.preventSSLAutoAllowed = false;
 			connection.autoReDialOnFailure = true;
 			connection.media.max(size.width, size.height);
 
