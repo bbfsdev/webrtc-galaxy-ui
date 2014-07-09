@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>RTCMultiConnection -- INITIATOR</title>
+		<title>Participant</title>
 		<script src="/RTCMultiConnection-v1.8.js" type="text/javascript"></script>
+        <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
 	</head>
 	<body>
 		<button id="js-start-broadcasting-button">Start broadcasting</button>
+        <span id="js-status-container"></span>
         <p><video autoplay></video></p>
 
 		<script>
@@ -13,63 +15,51 @@
 
 			var video = document.querySelector('video');
 			var stream;
-			var size = {w: 320, h: 180};
+			var size = {width: 320, height: 240};
+			var sessions = {};
 
 			var channelid = 'BB-Group-Video';
 
 			var connection = new RTCMultiConnection(channelid);
-			connection.sessionid = 'small-room';
+			connection.sessionid = 'virtual-group';
+            connection.isInitiator = false;
 			connection.autoReDialOnFailure = true;
-            //connection.leaveOnPageUnload = false;
+			connection.media.max(size.width, size.height);
 
-			connection.session = {
-				audio: false,
-				video: true
-			};
-			connection.media.max(size.w, size.w);
+            connection.onNewSession = function(session) {
+                console.log("New session: ", session);
+                session.session = {video: true};
+                if (sessions[session.sessionid]) return;
+                sessions[session.sessionid] = session;
+                session.join();
+            }
 
-			function stopMedia() {
-				if (!!stream) {
-					video.src = null;
-					stream.stop('local');
-					stream = null;
-				}
-			}
-
-			function restartMedia(connection, w, h) {
-                console.log("Restarting media...")
-				stopMedia();
-				connection.media.max(w, h);
-				size = {w: w, h: h};
-				// https://github.com/muaz-khan/WebRTC-Experiment/issues/229
-				connection.captureUserMedia(function(newStream) {
-					connection.renegotiate(newStream, connection.session);
-				});
-			}
-
-			connection.onCustomMessage = function(message) {
-                console.log("Custom message, ", message);
-				if (message === 'small-screen') {
-					restartMedia(connection, 320, 180);
-				} else if (message === 'big-screen') {
-					restartMedia(connection, 1920, 1080);
-				}
-			}
-
-			// on getting local or remote media stream
+			// On getting local or remote media stream
 			connection.onstream = function(e) {
-                console.log("New stream!", e)
+                console.log("New stream: ", e)
                 video.src = URL.createObjectURL(e.stream)
 				video.play();
 				stream = e.stream;
 			};
 
-			// open new session
+            connection.onleave = function(e) {
+                console.log("User left", e);
+                if (e.entireSessionClosed) {
+                    var statusContainer = document.querySelector('#js-status-container');
+                    statusContainer.innerHTML = "The initiator has left";
+                }
+            };
+
+            connection.onSessionClosed = function(e) {
+                console.log("Entire session closed: ", e);
+            };
+
+			// Connect to existing session
 			document.querySelector('#js-start-broadcasting-button').onclick = function() {
-				connection.open();
+				connection.connect();
 			};
 
-			window.onbeforeunload = stopMedia;
+			window.onbeforeunload = connection.close;
 		</script>
 
 	</body>
