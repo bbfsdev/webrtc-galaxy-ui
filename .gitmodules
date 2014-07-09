@@ -1,0 +1,3 @@
+[submodule "webrtc-multi-connection"]
+	path = webrtc-multi-connection
+	url = https://github.com/bbfsdev/webrtc-multi-connection.git
