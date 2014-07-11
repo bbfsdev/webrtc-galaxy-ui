@@ -10,6 +10,7 @@
 	text-align: center;
 }
 .preset{
+	cursor: pointer;
 	display: block;
 	width: 160px;
 	height: 160px;
@@ -28,3 +29,15 @@
 	background: #ffc;
 	cursor: pointer;
 }
+.group {
+	padding: 5px;
+	cursor: pointer;
+}
+.group:hover {
+	color:#00c;
+}
+.selected {
+	background: #ffc;
+	border-radius: 5px;
+}
+

@@ -1,6 +1,9 @@
 <div class="title">Presets</div>
 <div class="view">
-	<div ng-repeat="preset in presets" class="preset">
+	<div ng-repeat="preset in presets"
+		 ng-class="{ 'selected': $index == presetIndex }"
+         ng-click="presetClicked($index)"
+         class="preset">
 	</div>
 	<div class="preset">
 		<div class="preset_add" ng-click="addPreset()">+<div>		
