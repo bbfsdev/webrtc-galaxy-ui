@@ -1,0 +1,31 @@
+<h1>Listing addrs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>City</th>
+      <th>Local</th>
+      <th>Contacts</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @addrs.each do |addr| %>
+      <tr>
+        <td><%= addr.country %></td>
+        <td><%= addr.city %></td>
+        <td><%= addr.local %></td>
+        <td><%= addr.contacts %></td>
+        <td><%= link_to 'Show', addr %></td>
+        <td><%= link_to 'Edit', edit_addr_path(addr) %></td>
+        <td><%= link_to 'Destroy', addr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Addr', new_addr_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @addr.country %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @addr.city %>
+</p>
+
+<p>
+  <strong>Local:</strong>
+  <%= @addr.local %>
+</p>
+
+<p>
+  <strong>Contacts:</strong>
+  <%= @addr.contacts %>
+</p>
+
+<%= link_to 'Edit', edit_addr_path(@addr) %> |
+<%= link_to 'Back', addrs_path %>

@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: webrtc
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+
+development:
+  <<: *default
+  database: webrtc
+  password: <%= ENV['WEBRTC_BACKEND_DEV_PASSWORD'] %>
+  
+test:
+  <<: *default
+  database: webrtc_test
+  password: <%= ENV['WEBRTC_BACKEND_TEST_PASSWORD'] %>
+  
+production:
+  <<: *default
+  database: webrtc_prod
+  username: guarantables
+  password: <%= ENV['WEBRTC_BACKEND_DATABASE_PASSWORD'] %>
