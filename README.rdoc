@@ -10,23 +10,35 @@
 === First start
 
 $ pgctl
+
 > CREATE DATABASE webrtc;
+
 > CREATE USER webrtc PASSWORD 'some crap';
+
 > GRANT ALL ON DATABASE webrtc TO webrtc;
->\q
+
+>\\q
 
 $ vi ~/.bashrc # or whatewer
+
 export WEBRTC_BACKEND_DEV_PASSWORD='some crap'
+
 export WEBRTC_BACKEND_TEST_PASSWORD='some other crap'
+
 export WEBRTC_BACKEND_DATABASE_PASSWORD='some other crap'
+
 $ source ~/.bashrc # or other manner to import variables above
 
 # installing needed gems into $PROJECT_ROOT/vendor/
+
 $ bundle install --path=vendor
 
-# imports database structure and fill up 
+# imports database structure and fill up
+
 $ rake db:migrate db:seed
 
 # starting server
+
 # you can use without params or on your taste
+
 $ rails -b127.0.0.1 -p3000 s 
