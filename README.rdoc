@@ -1,28 +1,32 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+=== Dependencies
 
-Things you may want to cover:
+* ruby 2.1
+* redis
+* postgresql
+* /dev/hands
 
-* Ruby version
+=== First start
 
-* System dependencies
+$ pgctl
+> CREATE DATABASE webrtc;
+> CREATE USER webrtc PASSWORD 'some crap';
+> GRANT ALL ON DATABASE webrtc TO webrtc;
+>\q
 
-* Configuration
+$ vi ~/.bashrc # or whatewer
+export WEBRTC_BACKEND_DEV_PASSWORD='some crap'
+export WEBRTC_BACKEND_TEST_PASSWORD='some other crap'
+export WEBRTC_BACKEND_DATABASE_PASSWORD='some other crap'
+$ source ~/.bashrc # or other manner to import variables above
 
-* Database creation
+# installing needed gems into $PROJECT_ROOT/vendor/
+$ bundle install --path=vendor
 
-* Database initialization
+# imports database structure and fill up 
+$ rake db:migrate db:seed
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+# starting server
+# you can use without params or on your taste
+$ rails -b127.0.0.1 -p3000 s 
