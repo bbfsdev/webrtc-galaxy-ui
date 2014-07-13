@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20140713102709) do
   add_index "cities", ["country_id"], name: "index_cities_on_country_id", using: :btree
 
   create_table "countries", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -69,16 +69,17 @@ ActiveRecord::Schema.define(version: 20140713102709) do
 
   create_table "users", force: true do |t|
     t.string   "name"
+    t.boolean  "sex",                    default: true, null: false
     t.integer  "addr_id"
-    t.integer  "role_id",                default: 0,  null: false
+    t.integer  "role_id",                default: 0,    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -87,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140713102709) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0,  null: false
+    t.integer  "failed_attempts",        default: 0,    null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
   end

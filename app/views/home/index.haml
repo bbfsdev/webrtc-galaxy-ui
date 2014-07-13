@@ -1,0 +1,38 @@
+!!!
+%html.no-js{"ng-app" => "webrtc"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title{"ng-bind" => "'SITE_TITLE' | translate"}
+    %meta{:content => "{{ 'SITE_DESCRIPTION' | translate}}", :name => "description"}/
+    %meta{:content => "{{ 'SITE_KEYWORDS' | translate}}", :name => "keywords"}/
+
+    %link{ href: 'http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800&subset=greek,cyrillic-ext,latin-ext', rel: 'stylesheet', type: 'text/css' }
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1.0' }
+    = csrf_meta_tags
+    = yield :header_js
+    
+    / %link{:href => "/css/cssreset-min.css", :rel => "stylesheet"}/
+    %link{:href => "/css/main.css", :rel => "stylesheet"}/
+    / Simple Grid
+    %meta{:content => "IE=EmulateIE7; IE=EmulateIE9", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
+    %link{:href => "/css/SimpleGrid/base.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    /[if lt IE 9 ] <link rel="stylesheet" href="/css/720_grid.css" type="text/css" />
+    %link{:href => "/css/SimpleGrid/720_grid.css", :media => "screen and (min-width: 720px)", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/css/SimpleGrid/986_grid.css", :media => "screen and (min-width: 986px)", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/css/SimpleGrid/1236_grid.css", :media => "screen and (min-width: 1236px)", :rel => "stylesheet"}/
+    / Simple Grid
+  %body{"ng-controller" => "onLoadCtrl", "ng-keydown" => "keyDown($event)", "ng-keyup" => "keyUp($event)", :onload => ""}
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"}
+    %script{:src => "https://code.angularjs.org/1.2.14/angular-route.min.js"}
+    %script{:src => "http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"}
+    %script{:src => "js/vendor/angular-translate.min.js"}
+    %script{:src => "js/vendor/angular-translate-loader-static-files.min.js"}
+    / %script{ src="js/vendor/angular-dragdrop.min.js" }
+    %script{:src => "js/module.js"}
+    %script{:src => "js/services.js"}
+    %script{:src => "js/controllers.js"}
+    %script{:src => "js/directives.js"}
+      = yield

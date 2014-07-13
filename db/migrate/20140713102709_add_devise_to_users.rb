@@ -2,7 +2,7 @@ class AddDeviseToUsers < ActiveRecord::Migration
   def self.up
     change_table(:users) do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
+      t.string :email,              null: false, default: "", unique: true
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
@@ -43,35 +43,35 @@ class AddDeviseToUsers < ActiveRecord::Migration
 
   def self.down
     change_table(:users) do |t|
-      t.remove_column :email
-      t.remove_column :encrypted_password
+      t.remove :email
+      t.remove :encrypted_password
 
       ## Recoverable
-      t.remove_column   :reset_password_token
-      t.remove_column :reset_password_sent_at
+      t.remove   :reset_password_token
+      t.remove :reset_password_sent_at
 
       ## Rememberable
-      t.remove_column :remember_created_at
+      t.remove :remember_created_at
 
       ## Trackable
-      t.remove_column  :sign_in_count
-      t.remove_column :current_sign_in_at
-      t.remove_column :last_sign_in_at
-      t.remove_column   :current_sign_in_ip
-      t.remove_column   :last_sign_in_ip
+      t.remove  :sign_in_count
+      t.remove :current_sign_in_at
+      t.remove :last_sign_in_at
+      t.remove   :current_sign_in_ip
+      t.remove   :last_sign_in_ip
 
       ## Confirmable
-      t.remove_column   :confirmation_token
-      t.remove_column :confirmed_at
-      t.remove_column :confirmation_sent_at
-      t.remove_column   :unconfirmed_email
+      t.remove   :confirmation_token
+      t.remove :confirmed_at
+      t.remove :confirmation_sent_at
+      t.remove   :unconfirmed_email
 
       ## Lockable
-      t.remove_column  :failed_attempts
-      t.remove_column   :unlock_token
-      t.remove_column :locked_at
-      t.remove_index :reset_password_token
-      t.remove_index :email
+      t.remove  :failed_attempts
+      t.remove   :unlock_token
+      t.remove :locked_at
+#      t.remove_index :reset_password_token
+#      t.remove_index :email
     end
   
   end
