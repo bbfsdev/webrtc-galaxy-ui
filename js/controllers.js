@@ -25,6 +25,10 @@ function bodyCtrl ($scope, $rootScope) {
 bodyCtrl.$inject = ["$scope","$rootScope"];
 
 function previewCtrl ($scope, $rootScope) {
+    $scope.previewList = [];
+    $scope.$on("showPreview", function (e, groupList) {
+        previewList = groupList;
+    });
 }
 previewCtrl.$inject = ["$scope","$rootScope"];
 
@@ -32,11 +36,29 @@ function presetsCtrl ($scope,$rootScope) {
     $scope.presets = [];
     $scope.addPreset = function() {
         $scope.presets.push([]);
+        $scope.presetIndex = $scope.presets.length-1;
     }
     $scope.presetIndex = 0;
   	$scope.presetClicked = function ($index) {
     	$scope.presetIndex = $index;
-  	};
+  	}
+    $scope.$on("addGroupToPreset", function (e, group) {
+        if ($scope.presets.length == 0)
+            $scope.addPreset();
+        var curPreset = $scope.selectedPreset();
+        if (curPreset != null)
+        {
+            var curGroupIndex = curPreset.indexOf(group);
+            if (curGroupIndex == -1)
+                curPreset.push(group);
+            else
+                curPreset.splice(curGroupIndex, 1);
+        }
+    });
+    $scope.selectedPreset = function()
+    {
+        return $scope.presets[$scope.presetIndex];
+    }
 }
 presetsCtrl.$inject = ["$scope","$rootScope"];
 
@@ -47,8 +69,13 @@ function groupsCtrl ($scope, $rootScope, getGroups) {
     $scope.groupIndex = 0;
   	$scope.groupClicked = function ($index) {
     	$scope.groupIndex = $index;
-      //if ($rootScope.ctrlDown)
-        
+      var curGroup = $scope.selectedGroup();
+      if ($rootScope.ctrlDown && curGroup != null)
+        $rootScope.$broadcast('addGroupToPreset', curGroup);
   	};
+    $scope.selectedGroup = function()
+    {
+        return $scope.groups[$scope.groupIndex];
+    }
 }
 groupsCtrl.$inject = ["$scope","$rootScope","getGroups"];
