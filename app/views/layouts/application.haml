@@ -1,0 +1,30 @@
+!!!
+%html.no-js{"ng-app" => "webrtc"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "{{ 'SITE_DESCRIPTION' | translate}}", :name => "description"}/
+    %meta{:content => "{{ 'SITE_KEYWORDS' | translate}}", :name => "keywords"}/
+    %link{ href: 'http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800&subset=greek,cyrillic-ext,latin-ext', rel: 'stylesheet', type: 'text/css' }
+    %title{"ng-bind" => "'SITE_TITLE' | translate"}
+
+    -# SimpleGrid
+    %meta{:content => "IE=EmulateIE7; IE=EmulateIE9", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
+    = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag '/css/SimpleGrid/base.css', media: "screen and (min-width: 720px)"
+    /[if lt IE 9 ] <link rel="stylesheet" href="/css/720_grid.css" type="text/css" />
+    = stylesheet_link_tag "/css/SimpleGrid/720_grid.css", :media => "screen and (min-width: 720px)"
+    = stylesheet_link_tag "/css/SimpleGrid/986_grid.css", :media => "screen and (min-width: 986px)"
+    = stylesheet_link_tag "/css/SimpleGrid/1236_grid.css", :media => "screen and (min-width: 1236px)"
+    -# .Simple Grid
+
+    = javascript_include_tag 'application'
+
+    / Simple Grid
+    
+    
+    = csrf_meta_tags
+    = yield :header_js
+
+  %body{"ng-controller" => "onLoadCtrl", "ng-keydown" => "keyDown($event)", "ng-keyup" => "keyUp($event)", :onload => ""}
+    = yield

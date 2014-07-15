@@ -73,6 +73,5 @@ class AddDeviseToUsers < ActiveRecord::Migration
 #      t.remove_index :reset_password_token
 #      t.remove_index :email
     end
-  
   end
 end
