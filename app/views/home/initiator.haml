@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title Initiator
+    %link{:href => "data:image/x-icon;,", :rel => "shortcut icon", :type => "image/x-icon"}/
+    %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"}
+    %link{:href => "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %script{:src => "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"}
+    %script{:src => "/3rd-party/RTCMultiConnection-v1.8-experimental.js"}
+    %script{:src => "/initiator.js"}
+    %script{:src => "/js/initiator.js"}
+    :css
+      video {margin-right: 10px;}
+          %body
+    .container
+      %h1 Initiator
+      .panel.panel-default
+        .panel-heading Participants
+        .panel-body
+          #js-participants-container.btn-group{"data-toggle" => "buttons"}
+      .panel.panel-default
+        .panel-heading Videos
+        #js-videos-container.panel-body

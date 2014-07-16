@@ -1,0 +1,4 @@
+-if current_user.admin?
+  = render partial: 'application/admin_menu'
+-else
+  = render partial: 'application/user_menu'

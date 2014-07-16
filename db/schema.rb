@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140713102709) do
+ActiveRecord::Schema.define(version: 20140716131456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140713102709) do
     t.integer  "city_id",    null: false
     t.string   "local"
     t.string   "contacts"
+    t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -35,14 +36,59 @@ ActiveRecord::Schema.define(version: 20140713102709) do
 
   add_index "cities", ["country_id"], name: "index_cities_on_country_id", using: :btree
 
+  create_table "city_names", force: true do |t|
+    t.integer  "city_id"
+    t.string   "name"
+    t.string   "lang"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "city_names", ["city_id"], name: "index_city_names_on_city_id", using: :btree
+
   create_table "countries", force: true do |t|
     t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "country_names", force: true do |t|
+    t.integer  "country_id"
+    t.string   "name"
+    t.string   "lang"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "country_names", ["country_id"], name: "index_country_names_on_country_id", using: :btree
+
   create_table "roles", force: true do |t|
     t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rooms", force: true do |t|
+    t.string   "name"
+    t.json     "attrs"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedules", force: true do |t|
+    t.string   "name"
+    t.string   "at_when"
+    t.integer  "room_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "schedules", ["room_id"], name: "index_schedules_on_room_id", using: :btree
+
+  create_table "static_pages", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.text     "html_cache"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

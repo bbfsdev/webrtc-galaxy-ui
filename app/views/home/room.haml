@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %title Participant
+    %link{:href => "data:image/x-icon;,", :rel => "shortcut icon", :type => "image/x-icon"}/
+    %link{:href => "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"}
+    %script{:src => "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"}
+    %script{:src => "/3rd-party/RTCMultiConnection-v1.8-experimental.js"}
+    %script{:src => "/participant.js"}
+    %script{:src => "/js/participant.js"}
+  %body
+    .container
+      %h1 Participant
+      #js-status-container.alert.alert-danger{:role => "alert", :style => "display: none;"}
+      .panel.panel-default
+        .panel-heading
+          Local video stream
+        .panel-body
+          %video{:autoplay => "", :height => "240px", :width => "320px"}
+      %button#js-start-broadcasting-button.btn.btn-primary Start broadcasting

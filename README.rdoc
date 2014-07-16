@@ -29,7 +29,7 @@ export WEBRTC_BACKEND_DATABASE_PASSWORD='some other crap'
 
 $ source ~/.bashrc # or other manner to import variables above
 
-# installing needed gems into $PROJECT_ROOT/vendor/
+# installing needed gems into $PROJECT_ROOT/vendor/ or you can install into ~/.gem/
 
 $ bundle install --path=vendor
 
