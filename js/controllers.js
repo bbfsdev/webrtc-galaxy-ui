@@ -62,20 +62,59 @@ function presetsCtrl ($scope,$rootScope) {
 }
 presetsCtrl.$inject = ["$scope","$rootScope"];
 
-function groupsCtrl ($scope, $rootScope, getGroups) {
-    getGroups.then(function (reqData) {
-        $scope.groups = reqData.data.groups; 
-    });
-    $scope.groupIndex = 0;
-  	$scope.groupClicked = function ($index) {
-    	$scope.groupIndex = $index;
-      var curGroup = $scope.selectedGroup();
-      if ($rootScope.ctrlDown && curGroup != null)
-        $rootScope.$broadcast('addGroupToPreset', curGroup);
-  	};
-    $scope.selectedGroup = function()
-    {
-        return $scope.groups[$scope.groupIndex];
-    }
+function groupsCtrl ($scope, $rootScope) {
+  $scope.groupIndex = 0;
+  $scope.groups = [];
+	$scope.groupClicked = function ($index) {
+  	$scope.groupIndex = $index;
+    var curGroup = selectedGroup();
+    if ($rootScope.ctrlDown && curGroup != null)
+      $rootScope.$broadcast('addGroupToPreset', curGroup);
+    
+    var domVideoElement = document.getElementById('mainVideo');
+
+    initiator.bindVideo(curGroup.id, domVideoElement);
+	};
+
+  var selectedGroup = function()
+  {
+      return $scope.groups[$scope.groupIndex];
+  }
+
+  /* Adds a new participant toggle button and binds its click event
+   */
+  var onParticipantConnected = function (participantID) {
+  }
+
+  /* Enables participant's toggle button when his video stream is ready
+   */
+  var onParticipantVideoReady = function (participantID) {
+    $scope.groups.push({name: participantID, id: participantID});
+    $scope.$apply();
+  }
+
+  /* Removes participant's toggle button and video widget on leaving
+   */
+  var onParticipantLeft = function (participantID) {
+
+  }
+
+  var onConnectionClosed = function() {
+    alert('Connection closed because another initator has connected');
+  }
+
+  var channelID = prompt("Please enter the channel ID", 'bnei-baruch-group-video');
+
+  var settings = {
+      channelID: channelID,
+      debug: true,
+      onParticipantConnected: onParticipantConnected,
+      onParticipantVideoReady: onParticipantVideoReady,
+      onParticipantLeft: onParticipantLeft,
+      onConnectionClosed: onConnectionClosed
+  };
+
+  var initiator = new RTCInitiator(settings);
+
 }
-groupsCtrl.$inject = ["$scope","$rootScope","getGroups"];
+groupsCtrl.$inject = ["$scope","$rootScope"];
