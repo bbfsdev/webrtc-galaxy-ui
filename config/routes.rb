@@ -6,11 +6,9 @@ Rails.application.routes.draw do
   get 'home/room'
 
   devise_for :users
-  resources :countries
-  resources :cities
-  resources :addrs
-  resources :roles
-  resources :users
+  resources :countries, :cities, :addrs, :roles, :users
+
+  get '/setlanguage/:code', to: 'users#setlanguage'
   root to: 'home#index'
   
   # The priority is based upon order of creation: first created -> highest priority.

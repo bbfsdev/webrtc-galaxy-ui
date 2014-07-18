@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  login_button: 'Sign in'
+  register_button: 'Sign up'
+  forgot_password_button: 'I forgot my password'
+  unlock_button: 'Unlock account'
+  resend_confirmation_button: 'Resend confirmation'
+  enter_with_button: 'Enter with: '

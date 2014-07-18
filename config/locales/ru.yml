@@ -1,0 +1,9 @@
+ru:
+  enter_with_button: 'Зайти с помощью: '
+  login_button: Войти
+  register_button: Записаться
+  forgot_password_button: Забыл пароль?
+  unlock_button: Разблокировать акк.
+  resend_confirmation_button: Снова послать подтверждение
+  email: Электропочта
+  password: Пароль

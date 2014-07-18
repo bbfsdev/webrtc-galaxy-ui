@@ -1,0 +1,4 @@
+en:
+  devise:
+    confirmations:
+      resend_password_reset: 'Resend password reset instructions'

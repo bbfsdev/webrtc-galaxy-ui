@@ -12,13 +12,20 @@ class UsersController < ApplicationController
   def show
   end
 
+#TODO: when creating user with role GROUP (eg. group)
+# change view - drop name field, and obligatory select city and country
+# make checks in model validations and in controller: create and update
   # GET /users/new
   def new
     @user = User.new
+    @countries = Country.all.order(:name)
+    @cities = City.all.order(:name)
   end
 
   # GET /users/1/edit
   def edit
+    @countries = Country.all.order(:name)
+    @cities = City.all.order(:name)
   end
 
   # POST /users
@@ -59,6 +66,18 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+#TODO: need app-wide list of acceptable languages
+# need always set url with param ?ispeak=currentlang
+# need always accept setlanguage even before authentication
+  def setlanguage
+    if params[:code] =~ /^\w\w$/
+      cookies[:language] = params[:code]
+    else
+      logger.warn "Incorrect language code submitted from #{current_user.id}:#{current_user.email}"
+    end
+    redirect_to :
   end
 
   private

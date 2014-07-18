@@ -12,5 +12,10 @@
   %body
     -if user_signed_in?
       = render partial: 'application/menu'
+    -# -else
+    -#   .container{ style: 'margin-top: 4em;' }
+    -#     .row
+    -#       .col-md-1.col-md-offset-9
+    -#         =render partial: 'select_language'
     .container{ style: 'margin-top: 4em;' }
       = yield

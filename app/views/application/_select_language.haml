@@ -1,0 +1,8 @@
+=select_tag 'set_user_lang', options_for_select([[:ru, :ru], [:he, :he], [:de, :de], [:es,:es], [:fr, :fr], [:it, :it], [:ch, :ch], [:en, :en]]), class: 'form-control', id: 'set_user_lang'
+
+:javascript
+  $(document).ready(function(){
+    $('#set_user_lang').on('change', function(){
+      window.location.href = "#{request.scheme}://#{request.host}:3000/setlanguage/" + $(this).val();
+    });
+  });
