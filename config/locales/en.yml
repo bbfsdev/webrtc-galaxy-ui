@@ -26,3 +26,8 @@ en:
   unlock_button: 'Unlock account'
   resend_confirmation_button: 'Resend confirmation'
   enter_with_button: 'Enter with: '
+  edit_user: 'preferences'
+  sign_out: 'Quit'
+  sign_in: 'Enter'
+  register: 'Register'
+  BneiBaruh_logo: 'Bnei Baruh tree'

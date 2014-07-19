@@ -77,7 +77,7 @@ class UsersController < ApplicationController
     else
       logger.warn "Incorrect language code submitted from #{current_user.id}:#{current_user.email}"
     end
-    redirect_to :
+#    redirect_to :
   end
 
   private

@@ -6,16 +6,16 @@
       %span.icon-bar
       %span.icon-bar
     %a.navbar-brand{ href: root_path }
-      =image_tag '/i/logo.png', alt: 'логотип БнейБарух'
+      =image_tag '/i/bblogo.png', alt: t(:BneiBaruh_logo)
   .collapse.navbar-collapse#bs-example-navbar-collapse-1
     %ul.nav.navbar-nav
-      %li= link_to 'Комнаты', rooms_url
-      %li= link_to 'Пользователи', users_url
+      %li= link_to :rooms, rooms_path
+      %li= link_to :users, users_path
 
       -if StaticPage.count > 0
         %li.dropdown
           %a.dropdown-toggle{ :href => '#', 'data-toggle' => 'dropdown'}
-            Справочная
+            = t(:static_pages)
             %b.caret
             %ul.dropdown-menu
               -StaticPage.all.each do |page|
@@ -23,8 +23,8 @@
 
     %ul.nav.navbar-nav.navbar-right{ style: 'padding-right: 4em;'}
       -if user_signed_in?
-        %li= link_to 'Настройки', edit_user_registration_path
-        %li= link_to 'Выход', destroy_user_session_path, :method => :delete
+        %li= link_to t(:edit_user), edit_user_registration_path
+        %li= link_to t(:sign_out), destroy_user_session_path, :method => :delete
       -else
-        %li= link_to 'Войти', new_user_session_path
-        %li= link_to 'Записаться', new_user_registration_path
+        %li= link_to t(:sign_in), new_user_session_path
+        %li= link_to t(:register), new_user_registration_path
