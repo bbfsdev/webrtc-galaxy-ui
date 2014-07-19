@@ -1,5 +1,3 @@
-require 'net/ssh'
-
 namespace :thin do
   desc 'остановить thin'
   task stop: :environment do
