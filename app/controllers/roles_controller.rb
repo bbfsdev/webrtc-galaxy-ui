@@ -6,6 +6,10 @@ class RolesController < ApplicationController
   # GET /roles.json
   def index
     @roles = Role.all.order(:name).includes(:users)
+    respond_to do |format|
+      format.html
+      format.json { render json: @roles }
+    end
   end
 
   # GET /roles/1
