@@ -92,9 +92,12 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
     def user_params
-      if params[:user][:password]
+      if params[:user].has_key?(:password) && (!params[:user][:password].empty?)
         params[:user][:password] = params[:user][:password].strip
         params[:user][:password_confirmation] = params[:user][:password_confirmation].strip
+      else
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
       end
       params.require(:user).permit(:name, :addr_id, :role_id, :email, :password, :password_confirmation)
     end

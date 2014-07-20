@@ -22,11 +22,10 @@
       =f.text_field :password, class: 'form-control'
     .col-md-2
       %button.btn.btn-info#password_generator Generate random
-
   .form-group
     = f.label :role_id, 'Role', class: 'control-label col-md-3'
     .col-md-6
-      = f.select :role_id, options_from_collection_for_select(Role.all.order(:name), 'id', 'name'), class: 'form-control'
+      = f.select :role_id, options_for_select(Role.all.order(:name).collect{|r| [r.name, r.id] }, @user.role_id), {}, class: 'form-control'
   .form-group
     .col-md-offset-3
       = f.submit 'Save', class: 'btn btn-default btn-success'
