@@ -1,5 +1,6 @@
 class AddrsController < ApplicationController
   before_action :set_addr, only: [:show, :edit, :update, :destroy]
+  before_filter :check_permissions
 
   # GET /addrs
   # GET /addrs.json
@@ -62,13 +63,13 @@ class AddrsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_addr
       @addr = Addr.find(params[:id])
     end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
     def addr_params
       params.require(:addr).permit(:country_id, :city_id, :local, :contacts)
+    end
+    def check_permissions
+      # fish
     end
 end

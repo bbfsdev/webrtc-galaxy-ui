@@ -1,0 +1,23 @@
+%p#notice= notice
+.row
+  .col-md-12
+    #{t(:role)}:
+    %strong= @role.name
+    %table.table
+      %tr
+        %th name, email
+        %th created@
+        %th session@
+        %th ip
+      - @role.users.each do |user|
+        %tr
+          %td
+            =user.name
+            =user.email
+          %td=user.created_at
+          %td=user.current_sign_in_at
+          %td=user.current_sign_in_ip
+
+    .btn-group
+      =link_to :edit, edit_role_path(@role), class: 'btn btn-info'
+      =link_to :back, roles_path, class: 'btn btn-success'

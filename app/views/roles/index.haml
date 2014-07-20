@@ -1,0 +1,20 @@
+%h1.h1 Listing roles
+.row
+  .col-md-12
+    %table.table.table-stripped
+      %thead
+        %tr
+          %th= t('role.name')
+          %th
+      %tbody
+        - @roles.each do |role|
+          %tr
+            %td
+              =link_to role.name, role
+              #{role.users.count} user(s)
+            %td
+              =link_to t('role.edit'), edit_role_path(role)
+              |
+              =link_to t('role.destroy'), role, method: :delete, data: { confirm: "Delete the role #{role.name}?" }
+    %br/
+    =link_to t('role.new'), new_role_path, class: 'btn btn-success'

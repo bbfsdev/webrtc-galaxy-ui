@@ -1,0 +1,23 @@
+<h1>Listing ui_presets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ui_presets.each do |ui_preset| %>
+      <tr>
+        <td><%= link_to 'Show', ui_preset %></td>
+        <td><%= link_to 'Edit', edit_ui_preset_path(ui_preset) %></td>
+        <td><%= link_to 'Destroy', ui_preset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ui preset', new_ui_preset_path %>

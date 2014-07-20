@@ -1,10 +1,11 @@
 class RolesController < ApplicationController
   before_action :set_role, only: [:show, :edit, :update, :destroy]
+  before_filter :check_permissions
 
   # GET /roles
   # GET /roles.json
   def index
-    @roles = Role.all
+    @roles = Role.all.order(:name).includes(:users)
   end
 
   # GET /roles/1
@@ -66,9 +67,13 @@ class RolesController < ApplicationController
     def set_role
       @role = Role.find(params[:id])
     end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
     def role_params
       params.require(:role).permit(:name)
+    end
+    # disable all except admins
+    def check_permissions
+      unless current_user.admin?#  && action_name =~ /^(new|edit|destroy|update|create)$/
+        redirect_to :root
+      end
     end
 end

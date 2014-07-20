@@ -31,3 +31,8 @@ en:
   sign_in: 'Enter'
   register: 'Register'
   BneiBaruh_logo: 'Bnei Baruh tree'
+  role:
+    new: New role
+    name: Name
+    edit: edit
+    destroy: destroy

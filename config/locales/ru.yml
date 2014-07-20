@@ -7,3 +7,8 @@ ru:
   resend_confirmation_button: Снова послать подтверждение
   email: Электропочта
   password: Пароль
+  role:
+    new: Новая роль
+    name: Название
+    edit: Отредактировать
+    destroy: Удалить

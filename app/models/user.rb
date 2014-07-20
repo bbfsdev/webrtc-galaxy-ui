@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :addr, inverse_of: :user
   belongs_to :role, inverse_of: :users
+  has_and_belongs_to_many :ui_presets
   
   def man?
     self.sex

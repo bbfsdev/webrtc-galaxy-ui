@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_filter :check_permissions
 
   # GET /rooms
   # GET /rooms.json
@@ -62,17 +63,20 @@ class RoomsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_room
       @room = Room.find(params[:id])
     end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
       if params[:room][:attrs].empty?
         logger.debug "Вставляю скобочки в параметры комнаты"
         params[:room][:attrs] = "{}"
       end
       params.require(:room).permit(:name, :attrs)
+    end
+    # disable modify rooms to all except admins
+    def check_permissions
+      unless current_user.admin? && action_name !~ /^index$/ #  && action_name =~ /^(new|edit|destroy|update|create)$/
+        redirect_to :root
+      end
     end
 end

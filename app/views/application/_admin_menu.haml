@@ -21,10 +21,4 @@
               -StaticPage.all.each do |page|
                 %li=link_to page.title, static_page_path(page)
 
-    %ul.nav.navbar-nav.navbar-right{ style: 'padding-right: 4em;'}
-      -if user_signed_in?
-        %li= link_to t(:edit_user), edit_user_registration_path
-        %li= link_to t(:sign_out), destroy_user_session_path, :method => :delete
-      -else
-        %li= link_to t(:sign_in), new_user_session_path
-        %li= link_to t(:register), new_user_registration_path
+    =render partial: 'std_user_menu'

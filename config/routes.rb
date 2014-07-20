@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'home/room'
 
   devise_for :users
-  resources :countries, :cities, :addrs, :roles, :users
+  resources :countries, :cities, :addrs, :roles, :users, :ui_presets
 
   get '/setlanguage/:code', to: 'users#setlanguage'
   root to: 'home#index'

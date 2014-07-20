@@ -41,7 +41,7 @@
   'Spain' => [ 'Madrid' ] ,
   'Turkey' => [ 'Istambul', 'Bursa', 'Izmir', 'Samsun' ] }.each do |cn,clist|
   country = Country.create!(name: cn)
-  clist.each do |cityn|
-    country.cities << City.create(name: cityn)
-  end
+    clist.each do |cityn|
+      country.cities << City.create(name: cityn)
+    end
 end
