@@ -8,7 +8,7 @@ class RolesController < ApplicationController
     @roles = Role.all.order(:name).includes(:users)
     respond_to do |format|
       format.html
-      format.json { render json: @roles }
+      format.json { render :index, layout: false }
     end
   end
 

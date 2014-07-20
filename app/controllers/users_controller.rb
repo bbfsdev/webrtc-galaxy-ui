@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @users = User.all.order(:role_id, :name)
     respond_to do |format|
       format.html
-      format.json { render json: @users }
+      format.json { render :index, layout: false }
     end
   end
 
