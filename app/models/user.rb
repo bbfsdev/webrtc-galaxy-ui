@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   belongs_to :role, inverse_of: :users
   has_and_belongs_to_many :ui_presets
   
+  validates :name, :role_id, :email, presence: true
+  validates :name, :email, uniqueness: true
+  validates :role_id, inclusion: { in: Role.first.id .. Role.last.id }
+
   def man?
     self.sex
   end
