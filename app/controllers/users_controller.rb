@@ -90,6 +90,10 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
     def user_params
+      if params[:user][:password]
+        params[:user][:password] = params[:user][:password].strip
+        params[:user][:password_confirmation] = params[:user][:password_confirmation].strip
+      end
       params.require(:user).permit(:name, :addr_id, :role_id)
     end
     def check_permissions

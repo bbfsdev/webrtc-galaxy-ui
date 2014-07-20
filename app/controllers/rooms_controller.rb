@@ -75,7 +75,7 @@ class RoomsController < ApplicationController
     end
     # disable modify rooms to all except admins
     def check_permissions
-      unless current_user.admin? && action_name !~ /^index$/ #  && action_name =~ /^(new|edit|destroy|update|create)$/
+      unless current_user.admin? #  && action_name =~ /^(new|edit|destroy|update|create)$/
         redirect_to :root
       end
     end

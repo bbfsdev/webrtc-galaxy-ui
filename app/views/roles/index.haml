@@ -5,13 +5,13 @@
       %thead
         %tr
           %th= t('role.name')
+          %th= t('users')
           %th
       %tbody
         - @roles.each do |role|
           %tr
-            %td
-              =link_to role.name, role
-              #{role.users.count} user(s)
+            %td=link_to role.name, role
+            %td=role.users.count
             %td
               =link_to t('role.edit'), edit_role_path(role)
               |

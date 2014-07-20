@@ -11,6 +11,8 @@
     %ul.nav.navbar-nav
       %li= link_to :rooms, rooms_path
       %li= link_to :users, users_path
+      %li= link_to :roles, roles_path
+      %li= link_to :ui_presets, ui_presets_path
 
       -if StaticPage.count > 0
         %li.dropdown
