@@ -17,9 +17,6 @@ class UsersController < ApplicationController
   def show
   end
 
-#TODO: when creating user with role GROUP (eg. group)
-# change view - drop name field, and obligatory select city and country
-# make checks in model validations and in controller: create and update
   # GET /users/new
   def new
     @user = User.new
@@ -36,6 +33,11 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    # admin can create other users with no password confirmation
+    if params[:user][:password] && (!params[:user][:password_confirmation]) && current_user.admin?
+      params[:user][:password_confirmation] = params[:user][:password]
+    end
+
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -43,7 +45,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new }
+        format.html { redirect_to action: :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -74,7 +76,7 @@ class UsersController < ApplicationController
   end
 
 #TODO: need app-wide list of acceptable languages
-# need always set url with param ?ispeak=currentlang
+# need always set url with directory /currentlang/
 # need always accept setlanguage even before authentication
   def setlanguage
     if params[:code] =~ /^\w\w$/
@@ -94,9 +96,9 @@ class UsersController < ApplicationController
         params[:user][:password] = params[:user][:password].strip
         params[:user][:password_confirmation] = params[:user][:password_confirmation].strip
       end
-      params.require(:user).permit(:name, :addr_id, :role_id)
+      params.require(:user).permit(:name, :addr_id, :role_id, :email, :password, :password_confirmation)
     end
     def check_permissions
-      # fish
+      true
     end
 end

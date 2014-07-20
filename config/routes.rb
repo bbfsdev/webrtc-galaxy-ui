@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/room'
 
-  devise_for :users
+  devise_for :user
   resources :countries, :cities, :addrs, :roles, :users, :ui_presets
 
-  get '/setlanguage/:code', to: 'users#setlanguage'
+  #get '/setlanguage/:code', to: 'users#setlanguage'
+  get '/random-pass', to: 'home#random_password', format: :json
   root to: 'home#index'
   
   # The priority is based upon order of creation: first created -> highest priority.

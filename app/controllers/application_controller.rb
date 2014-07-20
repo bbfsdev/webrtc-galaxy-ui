@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   before_action :authenticate_user!
   protect_from_forgery with: :exception
-  before_filter :set_applocale
+  # before_filter :set_applocale
 
 private
   def set_applocale

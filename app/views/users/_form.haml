@@ -1,23 +1,45 @@
-= form_for(@user) do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@user.errors.count, "error")
-        prohibited this user from being saved:
-      %ul
-        - @user.errors.full_messages.each do |message|
-          %li= message
-  .field
-    = f.label :name
-    %br/
-    = f.text_field :name
-  .field
-    = f.label :addr_id
-    %br/
-    = f.text_field :addr_id
-  .field
-    = f.label :role_id
-    %br/
-    = f.text_field :role_id
-  .actions
-    = f.submit
+= form_for(@user, html: { role: 'form', class: 'form-horizontal' }) do |f|
+  .form-group
+    - if @user.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@user.errors.count, "error")
+          prohibited this user from being saved:
+        %ul
+          - @user.errors.full_messages.each do |message|
+            %li= message
+  .form-group
+    = f.label :name, 'Name', class: 'col-md-3 control-label'
+    .col-md-6
+      = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :email, 'Email', class: 'control-label col-md-3'
+    .col-md-6
+      = f.email_field :email, class: 'form-control'
+  .form-group
+    =f.label :password, 'Password:', class: 'col-md-3 control-label'
+    .col-md-4
+      =f.text_field :password, class: 'form-control'
+    .col-md-2
+      %button.btn.btn-info#password_generator Generate random
+
+  .form-group
+    = f.label :role_id, 'Role', class: 'control-label col-md-3'
+    .col-md-6
+      = f.select :role_id, options_from_collection_for_select(Role.all.order(:name), 'id', 'name'), class: 'form-control'
+  .form-group
+    .col-md-offset-3
+      = f.submit 'Save', class: 'btn btn-default btn-success'
+
+:javascript
+  $(document).ready(function(){
+    $('#password_generator').click(function(evt){
+      evt.preventDefault();
+      $.ajax({
+        url: '/random-pass',
+        method: 'GET'
+      }).done(function(data){
+        $('#user_password').val(data['pass']);
+      })
+    });
+  });

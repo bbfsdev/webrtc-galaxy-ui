@@ -1,13 +1,13 @@
-%p#notice= notice
-%p
-  %strong Name:
-  = @user.name
-%p
-  %strong Addr:
-  = @user.addr
-%p
-  %strong Role:
-  = @user.role
-= link_to 'Edit', edit_user_path(@user)
-|
-\#{link_to 'Back', users_path}
+%br/
+.row
+  .col-md-12
+    -if notice
+      .alert.alert-info= notice
+.row
+  .col-md-6
+    %ul.list-group
+      %li.list-group-item Name: #{@user.name}
+      %li.list-group-item Email: #{@user.email}
+      %li.list-group-item Role: #{@user.role.name}
+  .col-md-6
+    = link_to 'Edit', edit_user_path(@user), class: 'btn btn-info'
