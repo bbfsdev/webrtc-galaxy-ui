@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       @users = User.where(role_id: @role.id ).order(:name)
       respond_to do |format|
         format.html
-        format.json { render json: @users.collect{|user| { id: user.id, name: user.name, email: user.email }}, layout: false }
+        format.json { render json: { users: @users.collect{|user| { id: user.id, name: user.name, email: user.email }}}, layout: false }
       end
     end
   end
