@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   devise_for :user
   resources :countries, :cities, :addrs, :roles, :users, :ui_presets
 
+  get '/groups', to: 'users#by_role', defaults: { role: 'group' }
+
   #get '/setlanguage/:code', to: 'users#setlanguage'
   get '/random-pass', to: 'home#random_password', format: :json
   root to: 'home#index'

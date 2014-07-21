@@ -12,9 +12,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def by_role
+    if Role.all.pluck(:name).include? params[:role]
+      logger.debug "отдаю список пользователей с ролью #{params[:role]}"
+      @role = Role.find_by(name: params[:role])
+      @users = User.where(role_id: @role.id ).order(:name)
+      respond_to do |format|
+        format.html
+        format.json { render json: @users.collect{|user| { id: user.id, name: user.name, email: user.email }}, layout: false }
+      end
+    end
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json { render :show, layout: false }
+    end
   end
 
   # GET /users/new

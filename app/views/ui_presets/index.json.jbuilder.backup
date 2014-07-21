@@ -1,0 +1,3 @@
+json.array!(@ui_presets) do |ui_preset|
+  json.extract! ui_preset, :id, :attrs
+end

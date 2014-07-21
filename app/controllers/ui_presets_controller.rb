@@ -7,7 +7,7 @@ class UiPresetsController < ApplicationController
     @ui_presets = UiPreset.all.order(:name).includes(:users)
     respond_to do |format|
       format.html
-      format.json { render json: @ui_presets }
+      format.json { render json: { ui_presets: @ui_presets } }
     end
   end
 

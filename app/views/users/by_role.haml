@@ -1,0 +1,15 @@
+.row
+  .col-md-12
+    %h1.h1 #{@role.name}s
+    %table.table
+      %tr
+        %th Name
+        %th E-mail
+        %th Last signed@/ip
+        %th Current signed@/ip
+      -@users.each do |user|
+        %tr
+          %td= user.name
+          %td= user.email
+          %td #{user.last_sign_in_at}/#{user.last_sign_in_ip}
+          %td #{user.current_sign_in_at}/#{user.current_sign_in_ip}
