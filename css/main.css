@@ -40,4 +40,15 @@
 	background: #ffc;
 	border-radius: 5px;
 }
-
+.vid_1 {
+	width:100%;
+	height:100%
+}
+.vid_2, .vid_3, .vid_4 {
+	width:50%;
+	height:50%
+}
+.vid_5, .vid_6, .vid_7, .vid_8, .vid_9, .vid_10, .vid_11, .vid_12, .vid_13, .vid_14, .vid_15, .vid_16 {
+	width:25%;
+	height:25%
+}

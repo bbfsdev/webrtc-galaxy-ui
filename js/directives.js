@@ -43,3 +43,14 @@ webrtc.directive("groups", function () {
         controller: groupsCtrl
     };
 });
+
+webrtc.directive("groupVideo", function ($rootScope) {
+    return {
+        restrict: 'E',   
+        link: function ($scope, el, attrs) {
+          var htmlText = '<video id="' + attrs.id + '" class="' + attrs.id + '" />';
+          el.replaceWith(htmlText);
+          $rootScope.initiator.bindVideo(attrs.videoId, el);
+        }
+    };
+});

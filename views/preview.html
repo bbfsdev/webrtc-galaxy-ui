@@ -1,4 +1,7 @@
 <div class="title">Preview</div>
 <div class="view">
-	<video id="mainVideo" />
+	<group-video ng-repeat="video in previewList"
+			     id="{{'vid_' + $index}}"
+			     videoId="{{video.id}}">
+	</group-video>
 </div>

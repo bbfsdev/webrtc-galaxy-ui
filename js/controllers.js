@@ -26,8 +26,9 @@ bodyCtrl.$inject = ["$scope","$rootScope"];
 
 function previewCtrl ($scope, $rootScope) {
     $scope.previewList = [];
+    $scope.previewHtml = '';
     $scope.$on("showPreview", function (e, groupList) {
-        previewList = groupList;
+        $scope.previewList = groupList;
     });
 }
 previewCtrl.$inject = ["$scope","$rootScope"];
@@ -65,15 +66,15 @@ presetsCtrl.$inject = ["$scope","$rootScope"];
 function groupsCtrl ($scope, $rootScope) {
   $scope.groupIndex = 0;
   $scope.groups = [];
-	$scope.groupClicked = function ($index) {
+	
+  $scope.groupClicked = function ($index) {
   	$scope.groupIndex = $index;
     var curGroup = selectedGroup();
-    if ($rootScope.ctrlDown && curGroup != null)
+    if (curGroup == null) return;
+    if ($rootScope.ctrlDown)       
       $rootScope.$broadcast('addGroupToPreset', curGroup);
-    
-    var domVideoElement = document.getElementById('mainVideo');
-
-    initiator.bindVideo(curGroup.id, domVideoElement);
+    else
+      $rootScope.$broadcast('showPreview', [curGroup]);
 	};
 
   var selectedGroup = function()
@@ -103,7 +104,7 @@ function groupsCtrl ($scope, $rootScope) {
     alert('Connection closed because another initator has connected');
   }
 
-  var channelID = prompt("Please enter the channel ID", 'bnei-baruch-group-video');
+  var channelID = prompt("Please enter the channel ID", 'bnei-baruch-group-video2');
 
   var settings = {
       channelID: channelID,
@@ -114,7 +115,14 @@ function groupsCtrl ($scope, $rootScope) {
       onConnectionClosed: onConnectionClosed
   };
 
-  var initiator = new RTCInitiator(settings);
+  $rootScope.initiator = new RTCInitiator(settings);
 
 }
 groupsCtrl.$inject = ["$scope","$rootScope"];
+
+
+function groupVideoCtrl ($scope, $rootScope) {
+  $scope.videoId = 'vid-1';
+}
+groupVideoCtrl.$inject = ["$scope","$rootScope"];
+
