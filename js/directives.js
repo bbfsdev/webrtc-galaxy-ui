@@ -47,10 +47,18 @@ webrtc.directive("groups", function () {
 webrtc.directive("groupVideo", function ($rootScope) {
     return {
         restrict: 'E',   
-        link: function ($scope, el, attrs) {
-          var htmlText = '<video id="' + attrs.id + '" class="' + attrs.id + '" />';
-          el.replaceWith(htmlText);
-          $rootScope.initiator.bindVideo(attrs.videoId, el);
+        link: function ($scope, element, attrs) {
+          console.log("Initialize video (ElementId:" + attrs.id + ' participantId:' + attrs.videoId);
+          element[0].outerHTML = '<video id="' + attrs.id + '" />';
+          var videoElement = document.getElementById(attrs.id)
+          $rootScope.initiator.bindVideo(attrs.videoId, videoElement);
+
+          $scope.$on('$destroy', function() {
+            console.log("Destroy video (ElementId:" + attrs.id + ' participantId:' + attrs.videoId);            
+            $rootScope.initiator.unbindVideo(attrs.videoId);            
+            videoElement.outerHTML = '';
+          });
         }
+
     };
 });

@@ -29,6 +29,7 @@ function previewCtrl ($scope, $rootScope) {
     $scope.previewHtml = '';
     $scope.$on("showPreview", function (e, groupList) {
         $scope.previewList = groupList;
+        $scope.$apply();
     });
 }
 previewCtrl.$inject = ["$scope","$rootScope"];
@@ -42,6 +43,7 @@ function presetsCtrl ($scope,$rootScope) {
     $scope.presetIndex = 0;
   	$scope.presetClicked = function ($index) {
     	$scope.presetIndex = $index;
+      $rootScope.$broadcast('showPreview', $scope.selectedPreset());
   	}
     $scope.$on("addGroupToPreset", function (e, group) {
         if ($scope.presets.length == 0)
@@ -104,7 +106,7 @@ function groupsCtrl ($scope, $rootScope) {
     alert('Connection closed because another initator has connected');
   }
 
-  var channelID = prompt("Please enter the channel ID", 'bnei-baruch-group-video2');
+  var channelID = prompt("Please enter the channel ID", 'bnei-baruch-group-video');
 
   var settings = {
       channelID: channelID,
@@ -122,7 +124,7 @@ groupsCtrl.$inject = ["$scope","$rootScope"];
 
 
 function groupVideoCtrl ($scope, $rootScope) {
-  $scope.videoId = 'vid-1';
+  $scope.videoId = '';
 }
 groupVideoCtrl.$inject = ["$scope","$rootScope"];
 

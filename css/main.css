@@ -5,6 +5,9 @@
 	height: 400px;
 	overflow-y: auto;	
 }
+.preview {
+	overflow-y: inherit;	
+}
 .title{
 	color:#0000cc;
 	text-align: center;
@@ -39,6 +42,14 @@
 .selected {
 	background: #ffc;
 	border-radius: 5px;
+}
+.vid {
+	float:left;
+	margin-bottom: 5px;
+}
+.vid video {
+	width: 100%;
+	height: 100%;
 }
 .vid_1 {
 	width:100%;
