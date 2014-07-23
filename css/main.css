@@ -32,6 +32,12 @@
 	background: #ffc;
 	cursor: pointer;
 }
+.preset_group {
+	cursor: pointer;
+}
+.preset_group:hover {
+	color:#00c;
+}
 .group {
 	padding: 5px;
 	cursor: pointer;

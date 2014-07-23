@@ -4,7 +4,9 @@
 		 ng-class="{ 'selected': $index == presetIndex }"
          ng-click="presetClicked($index)"
          class="preset">
-         <div ng-repeat="group in preset">{{group.name}}</div>
+         <div ng-repeat="group in preset">
+         	<div ng-click="removeGroup(preset,group)" class="preset_group">{{group.name}}</div>
+         </div>
 	</div>
 	<div class="preset">
 		<div class="preset_add" ng-click="addPreset()">+<div>		
