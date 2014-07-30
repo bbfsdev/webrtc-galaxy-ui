@@ -1,9 +1,17 @@
 <div class="title">Groups</div>
 <div class="view">
-	<div ng-repeat="item in groups" 
-		 ng-class="{ 'selected': $index == groupIndex }"
-         ng-click="groupClicked($index)"
+	<div ng-repeat="group in conectedGroups" 
+		 ng-class="{ 'selected': group == selectedGroup }"
+         ng-click="groupClicked(group)"
          class="group">
-		{{item.name}}
+		<img src='images/connected.png' />
+		{{group.name}}
+	</div>
+	<div ng-repeat="group in groupList | filter: isGroupDisconected" 
+		 ng-class="{ 'selected': group == selectedGroup }"
+		 ng-click="groupClicked(group)"
+		 class="group">
+		<img src='images/disconnected.png' />
+		{{group.name}}
 	</div>
 </div>

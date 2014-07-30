@@ -121,7 +121,7 @@ hr {
 
 .banner-wrap {
 	text-align: center;
-	background: #ffc;
+	background: #ddf;
 	border-bottom: 1px solid #ccc;
 	padding: 0 10px 1em;
 	margin-bottom: 1em;
@@ -191,7 +191,7 @@ a.bttn {
 .example-grids .row { margin-bottom: 0; }
 
 .example-grids .row p {
-	background: #ffc;
+	background: #ddf;
 	border-right: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 	font-family: Menlo, 'Panic Sans', monospace;

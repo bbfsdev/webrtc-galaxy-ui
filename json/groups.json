@@ -1,16 +1,20 @@
 {
- "groups": [
-    {
-      "name": "Petah Tikva"
-    },
-    {
-      "name": "Mosccow"
-    },
-    {
-      "name": "Sochi"
-    },
-    {
-      "name": "New York"
-    }
+   "groups":[
+      {
+         "id":"virtual-group",
+         "name":"Petah Tikva"
+      },
+      {
+         "id":"virtual-group2",
+         "name":"Mosccow"
+      },
+      {
+         "id":"virtual-group3",
+         "name":"Sochi"
+      },
+      {
+         "id":"virtual-group4",
+         "name":"New York"
+      }
    ]
 }

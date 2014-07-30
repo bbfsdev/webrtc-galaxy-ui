@@ -62,3 +62,11 @@ webrtc.directive("groupVideo", function ($rootScope) {
 
     };
 });
+
+webrtc.directive("onloadMonitor", function () {
+    return {
+        scope: {},
+        templateUrl: './views/onloadMonitor.html',
+        controller: onLoadMonitorCtrl
+    };
+});
