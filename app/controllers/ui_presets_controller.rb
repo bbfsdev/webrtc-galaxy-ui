@@ -5,9 +5,15 @@ class UiPresetsController < ApplicationController
   # GET /ui_presets.json
   def index
     @ui_presets = UiPreset.all.order(:name).includes(:users)
+    @json_presets = @ui_presets.collect do |p|
+          { id: p.id,
+            size: p.attrs['size'],
+            groups: p.users.collect{|u| { id: u.id, name: u.name } }
+          }
+        end
     respond_to do |format|
       format.html
-      format.json { render json: { ui_presets: @ui_presets } }
+      format.json { render json: { ui_presets: @json_presets } }
     end
   end
 
