@@ -1,0 +1,16 @@
+/.bundle
+
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+*~
+*.bak
+
+/tmp
+/vendor
+/log
+*~
+# >>>>>>> connect_to_galaxy_lib
