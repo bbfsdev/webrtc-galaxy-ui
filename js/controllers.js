@@ -1,22 +1,23 @@
 function onLoadCtrl ($scope, $rootScope, $translate) {
-	 $scope.keyDown = function(event){
+   var monitorNumber = 2;
+   $rootScope.monitors = {};
+
+   $scope.keyDown = function(event){
       if(event.which === 17){ //ctrl
          $rootScope.ctrlDown = true;   
       }
       if(event.which === 18){ //alt
          $rootScope.altDown = true;   
       }
-      
-      if(event.which === 49) //1
-      {
-        alert('1');
-      } 
-      if(event.which === 50) //2
-      {
-        alert('2');
-      } 
-       
+      for (var i=1; i<=monitorNumber; i++) {
+        if(event.which === (i+48))
+        {
+          getMonitor(i).test();
+          //monitorScope.$broadcast('showGroupPreview', {name: 'virtual-group', id: 'virtual-group'});
+        } 
+      }
     }
+
     $scope.keyUp = function(event){
        if(event.which === 17){ //ctrl
            $rootScope.ctrlDown = false;
@@ -26,10 +27,34 @@ function onLoadCtrl ($scope, $rootScope, $translate) {
        }
 
     }
+
+    var addMonitor = function(number) {
+      if (number in $rootScope.monitors) {
+        alert('Monitor ' + number + ' allredy exists!');
+        return;
+      }
+      var monitor = window.open("monitor.html");
+      $rootScope.monitors[number] = monitor;
+    }
+
+    var getMonitor = function(number) {
+      return $rootScope.monitors[number];
+    }
+
+    for (var i=1; i<=monitorNumber; i++)
+      addMonitor(i);
+
+    window.onbeforeunload = function (e) {
+      for (var i=1; i<=monitorNumber; i++) 
+        $rootScope.monitors[i].close();   
+    };
 }
 onLoadCtrl.$inject = ["$scope", "$rootScope", "$translate"];
 
 function onLoadMonitorCtrl ($scope, $rootScope, $translate) {
+  $scope.test = function() {
+    //alert('test');
+  }
 }
 onLoadMonitorCtrl.$inject = ["$scope", "$rootScope", "$translate"];
 

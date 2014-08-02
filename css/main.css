@@ -1,3 +1,6 @@
+body, html {
+  height: 100%;
+}
 body {
 	font-family:Arial;
 	font-size:14px;
@@ -12,6 +15,13 @@ body {
 }
 .preview {
 	overflow-y: inherit;	
+	background: #777;
+	border-radius: 0px;
+}
+.monitor {
+	background:#777;
+	width:100%;
+	height:100%;
 }
 .title{
 	color:#0000cc;

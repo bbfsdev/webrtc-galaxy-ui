@@ -7,24 +7,10 @@
     <meta name="keywords" content="{{ 'SITE_KEYWORDS' | translate}}">
     <link rel="stylesheet" href="./css/cssreset-min.css">
     <link rel="stylesheet" href="./css/main.css">
-    <!-- Simple Grid -->
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9"> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-	<link rel="stylesheet" href="./css/SimpleGrid/base.css" type="text/css" media="all" />
-	<!--[if lt IE 9 ]><link rel="stylesheet" href="./css/720_grid.css" type="text/css" /><![endif]-->
-	<link rel="stylesheet" href="./css/SimpleGrid/720_grid.css" type="text/css" media="screen and (min-width: 720px)" />
-	<link rel="stylesheet" href="./css/SimpleGrid/986_grid.css" type="text/css" media="screen and (min-width: 986px)" />
-	<link rel="stylesheet" href="./css/SimpleGrid/1236_grid.css" media="screen and (min-width: 1236px)" />
-    <!--script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script-->
-	<!--script type="text/javascript" src="http://use.typekit.com/fti4bos.js"></script>
-	<script type="text/javascript">try{Typekit.load();}catch(e){}</script!-->
-	<!-- Simple Grid -->
-
-
 </head>
-<body onloadMonitor ng-controller="onLoadMonitorCtrl" ng-keydown="keyDown($event)"  ng-keyup="keyUp($event)">
-  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+<body onload-monitor ng-controller="onLoadMonitorCtrl">
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.2.14/angular-route.min.js"></script>
     <script src="http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"></script>
     <script src="js/vendor/angular-translate.min.js"></script>
@@ -36,5 +22,6 @@
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/directives.js"></script>
+    <script src="js/monitor.js"></script>
 </body>
 </html>

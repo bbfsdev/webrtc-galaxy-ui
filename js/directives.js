@@ -2,7 +2,6 @@ webrtc.directive("onload", function () {
     return {
         scope: {},
         templateUrl: './views/onload.html',
-        controller: onLoadCtrl
     };
 });
 
@@ -67,6 +66,5 @@ webrtc.directive("onloadMonitor", function () {
     return {
         scope: {},
         templateUrl: './views/onloadMonitor.html',
-        controller: onLoadMonitorCtrl
     };
 });
