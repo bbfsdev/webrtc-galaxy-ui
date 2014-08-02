@@ -1,0 +1,6 @@
+<div ng-repeat="group in previewList | filter: isGroupConected" 
+	 class="{{'vid vid_' + previewList.length}}">
+	<group-video id="{{'vid_' + ($index+1) }}"
+			     video-id="{{group.id}}">
+	</group-video>
+</div>

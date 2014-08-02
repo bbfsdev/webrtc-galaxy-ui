@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [submodule "webrtc-multi-connection"]
 	path = webrtc-multi-connection
 	url = https://github.com/bbfsdev/webrtc-multi-connection.git
@@ -7,3 +8,8 @@
 [submodule "app/assets/javascripts/galaxy-lib"]
 	path = app/assets/javascripts/galaxy-lib
 	url = git@github.com:bbfsdev/webrtc-galaxy-lib.git
+=======
+[submodule "js/webrtc-galaxy-lib"]
+	path = js/webrtc-galaxy-lib
+	url = https://github.com/bbfsdev/webrtc-galaxy-lib.git
+>>>>>>> connect_to_galaxy_lib

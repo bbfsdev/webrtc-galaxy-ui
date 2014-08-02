@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="webrtc" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title ng-bind="'SITE_TITLE' | translate"></title>
+    <meta name="description" content="{{ 'SITE_DESCRIPTION' | translate}}">
+    <meta name="keywords" content="{{ 'SITE_KEYWORDS' | translate}}">
+    <link rel="stylesheet" href="./css/cssreset-min.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body onload-monitor ng-controller="onLoadMonitorCtrl">
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.14/angular-route.min.js"></script>
+    <script src="http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"></script>
+    <script src="js/vendor/angular-translate.min.js"></script>
+    <script src="js/vendor/angular-translate-loader-static-files.min.js"></script>
+    <!--script src="js/vendor/angular-dragdrop.min.js"></script-->
+    <script src="js/webrtc-galaxy-lib/3rd-party/RTCMultiConnection-v1.8-experimental.js"></script>
+    <script src="js/webrtc-galaxy-lib/initiator.js"></script>
+    <script src="js/module.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/monitor.js"></script>
+</body>
+</html>
