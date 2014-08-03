@@ -3,11 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title ng-bind="'SITE_TITLE' | translate"></title>
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
     <meta name="description" content="{{ 'SITE_DESCRIPTION' | translate}}">
     <meta name="keywords" content="{{ 'SITE_KEYWORDS' | translate}}">
     <link rel="stylesheet" href="./css/cssreset-min.css">
     <!-- Simple Grid -->
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 	<link rel="stylesheet" href="./css/SimpleGrid/base.css" type="text/css" media="all" />
 	<!--[if lt IE 9 ]><link rel="stylesheet" href="./css/720_grid.css" type="text/css" /><![endif]-->
@@ -22,14 +23,15 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body onload ng-controller="onLoadCtrl" ng-keydown="keyDown($event)"  ng-keyup="keyUp($event)">
+    <div class="hide" id="js-nuve-data" data-token="eyJ0b2tlbklkIjoiNTNkYzk1MGQ1ZGJlNmU2OTNiNDE0ZjdiIiwiaG9zdCI6ImxpY29kZS5zb2NpbzIubmV0Ojc1NzMiLCJzZWN1cmUiOnRydWUsInNpZ25hdHVyZSI6IllUQTRZVGxqWldWa00yUXdZbU5oTVRrM09HWTNZekpqWXpSalpUYzFOV1ZtTUdKbFpEVXlaZz09In0="></div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.2.14/angular-route.min.js"></script>
     <script src="http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"></script>
     <script src="js/vendor/angular-translate.min.js"></script>
     <script src="js/vendor/angular-translate-loader-static-files.min.js"></script>
     <!--script src="js/vendor/angular-dragdrop.min.js"></script-->
-    <script src="js/webrtc-galaxy-lib/3rd-party/RTCMultiConnection-v1.8-experimental.js"></script>
-    <script src="js/webrtc-galaxy-lib/initiator.js"></script>
+    <script src="js/vendor/erizo.js"></script>
     <script src="js/module.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>

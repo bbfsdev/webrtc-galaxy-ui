@@ -48,9 +48,11 @@ webrtc.directive("groupVideo", function ($rootScope) {
         restrict: 'E',   
         link: function ($scope, element, attrs) {
           console.log("Initialize video (ElementId:" + attrs.id + ' participantId:' + attrs.videoId);
-          element[0].outerHTML = '<video id="' + attrs.id + '" />';
-          var videoElement = document.getElementById(attrs.id)
-          $rootScope.initiator.bindVideo(attrs.videoId, videoElement);
+
+          $rootScope.participantElementIDs[attrs.videoId] = attrs.id;
+
+          var streams = $rootScope.room.getStreamsByAttribute('participantID', attrs.videoId);
+          $rootScope.room.subscribe(streams[0]);
 
           $scope.$on('$destroy', function() {
             console.log("Destroy video (ElementId:" + attrs.id + ' participantId:' + attrs.videoId);            
