@@ -44,9 +44,9 @@ function onLoadCtrl ($scope, $rootScope, $translate) {
         return $rootScope.monitors[number];
     }
 
-    for (var i=1; i<=monitorNumber; i++)
+    /*for (var i=1; i<=monitorNumber; i++)
         addMonitor(i);
-
+*/
     window.onbeforeunload = function (e) {
         for (var i=1; i<=monitorNumber; i++) 
             $rootScope.monitors[i].close();   
@@ -220,9 +220,7 @@ function groupsCtrl ($scope, $rootScope, GetGroups) {
     $scope.isGroupDisconected = function(group) {
         return !($scope.isGroupConected(group));
     }
-
-    var channelID = prompt("Please enter the channel ID", 'bnei-baruch-group-video');
-
+    
     GetGroups.then(function (data) {
         $scope.groupList = data.data.groups;
         for (var i=0; i < $scope.groupList.length; i++) {

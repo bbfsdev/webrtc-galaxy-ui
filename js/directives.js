@@ -55,9 +55,9 @@ webrtc.directive("groupVideo", function ($rootScope) {
           $rootScope.room.subscribe(streams[0]);
 
           $scope.$on('$destroy', function() {
-            console.log("Destroy video (ElementId:" + attrs.id + ' participantId:' + attrs.videoId);            
-            $rootScope.initiator.unbindVideo(attrs.videoId);            
-            videoElement.outerHTML = '';
+            console.log("Destroy video (ElementId:" + attrs.id + ' participantId:' + attrs.videoId);
+            var streams = $rootScope.room.getStreamsByAttribute('participantID', attrs.videoId);
+            $rootScope.room.unsubscribe(streams[0]);
           });
         }
 
